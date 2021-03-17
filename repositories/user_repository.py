@@ -61,10 +61,15 @@ def tasks(user):
 
     sql = "SELECT * FROM tasks WHERE user_id = %s"
     values = [user.id]
+    # results is a list of dictionary type items representing the tasks of the user with the given id.
     results = run_sql(sql, values)
-
+    # Then create task objects to append to the user task list. and return the task list.
     for row in results:
-        task = Task(row['description'], user, row['duration'], row['completed'], row['id'] )
+        task = Task(row['description'], 
+                    user, 
+                    row['duration'], 
+                    row['completed'], 
+                    row['id'])
         tasks.append(task)
     return tasks    
     

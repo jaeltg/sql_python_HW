@@ -28,6 +28,7 @@ def select_all():
 
 # For dict type item in results list, get all values stored in keys and create a task object
     for row in results: 
+        # We have access to the user id that has the tasks. We use the select method from the user repository to get a user object by using the user id we already have stored in the task list.
         user = user_repository.select(row["user_id"])
         task = Task(row["description"], 
                     user, 
